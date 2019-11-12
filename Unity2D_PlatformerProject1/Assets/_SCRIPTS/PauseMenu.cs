@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetButtonDown("Pause"))
         {
-            //this is togglight the bool "paused". Press one time = enabled, press again = disabled.
+            //this is toggling the bool "paused". Press one time = enabled, press again = disabled.
             paused = !paused;
         }
 
