@@ -4,18 +4,25 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    //floats
     public float maxSpeed = 3;
     public float speed = 300f;
     public float jumpPower = 800f;
 
-     bool grounded = true;
+    //booleans
+    bool grounded = true;
+
+    //stats
+    public int curHealth;
+    public int maxHealth = 100;
 
     private Rigidbody2D rb2d;
 
     void Start()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        Debug.Log("jsfhjksdhgf");
+
+        curHealth = maxHealth;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -28,7 +35,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (curHealth > maxHealth)
+        {
+            curHealth = maxHealth;
+        }
 
+        if (curHealth <= 0)
+        {
+            Die();
+        }
     }
 
     void FixedUpdate()
@@ -57,5 +72,10 @@ public class Player : MonoBehaviour
         {
             rb2d.velocity = new Vector2(-maxSpeed, rb2d.velocity.y);
         }
+    }
+
+    void Die()
+    {
+        Application.LoadLevel(Application.loadedLevel);
     }
 }
