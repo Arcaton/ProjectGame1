@@ -17,11 +17,12 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;
 
     private Rigidbody2D rb2d;
+    private Animator anim;
 
     void Start()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-
+        anim = gameObject.GetComponent<Animator>();
         curHealth = maxHealth;
     }
 
@@ -35,6 +36,21 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        anim.SetBool("Grounded", grounded);
+        anim.SetFloat("Speed", Mathf.Abs(Input.GetAxis("Horizontal")));
+
+        if (Input.GetAxis("Horizontal") < -0.1f)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        if (Input.GetAxis("Horizontal") > 0.1f)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+
+
+
         if (curHealth > maxHealth)
         {
             curHealth = maxHealth;
@@ -78,4 +94,5 @@ public class Player : MonoBehaviour
     {
         Application.LoadLevel(Application.loadedLevel);
     }
+
 }
