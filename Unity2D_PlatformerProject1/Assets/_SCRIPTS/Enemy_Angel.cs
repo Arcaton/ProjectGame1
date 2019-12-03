@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class Enemy_Angel : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    private Player player;
+
     void Start()
     {
-        
+
+        //getting the script (Player) for the player by finding an object with the tag "player"
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        
+
+        //if something with the tag "Player" collides with the enemy, the player's health is reduced
+        if (col.CompareTag("Player"))
+        {
+
+            player.Damage(100);
+
+        }
+
     }
+        
 }

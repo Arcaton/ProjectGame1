@@ -95,4 +95,11 @@ public class Player : MonoBehaviour
         Application.LoadLevel(Application.loadedLevel);
     }
 
+    public void Damage(int dmg)
+    {
+
+        curHealth -= dmg;
+
+    }
+
 }
